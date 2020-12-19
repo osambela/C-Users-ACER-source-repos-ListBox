@@ -1,0 +1,118 @@
+﻿<Window x:Class="ListBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListBox"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition Height="240"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ListBox Name="lista" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" PreviewMouseDown="TextBlock_PreviewMouseDown" Text="{Binding nombrePoblacion1}"></TextBlock>
+                        <TextBlock Grid.Column="1" PreviewMouseDown="TextBlock_PreviewMouseDown" Text="{Binding nombrePoblacion2}"></TextBlock>
+                        <TextBlock Grid.Column="2" PreviewMouseDown="TextBlock_PreviewMouseDown" Text="{Binding temperatura1}"></TextBlock>
+                        <TextBlock Grid.Column="3" PreviewMouseDown="TextBlock_PreviewMouseDown" Text="{Binding temperatura2}"></TextBlock>
+                        <ProgressBar Width="60" Height="20" Name="progressBar" Grid.Column="4" Minimum="0" Maximum="20"
+                                      Value="{Binding diferencia}"></ProgressBar>
+                    </Grid>
+
+                </DataTemplate>        
+                
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Button Grid.Row="0" VerticalAlignment="Bottom" Margin="0 0 0 10" Width="180" Height="30" Content="Enviar" FontSize="20" Click="Button_Click"></Button>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <ComboBox Name="Poblaciones">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NombreCapital}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="40 0">
+                <Label FontWeight="UltraBold" FontSize="15">Países</Label>
+                <CheckBox IsThreeState="True" Checked="CheckBox_Checked" Unchecked="UnCheckbox_Checked" Name="allChecked">Agregar todas</CheckBox>
+                <StackPanel Margin="10">
+                    <CheckBox IsEnabled="true" Name="peru" Checked="Individual_Checked" Unchecked="Individual_NoChecked">Perú</CheckBox>
+                    <CheckBox IsChecked="True" Name="brasil" Checked="Individual_Checked" Unchecked="Individual_NoChecked">Brasil</CheckBox>
+                    <CheckBox Name="chile" Checked="Individual_Checked" Unchecked="Individual_NoChecked">Chile</CheckBox>
+                    <CheckBox Name="argentina" Checked="Individual_Checked" Unchecked="Individual_NoChecked">Argentina</CheckBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="SEMAFORO" FontSize="35" TextAlignment="Center" Foreground="BlueViolet"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,78,0,2" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <RadioButton Margin="20 0 0 20" Click="RadioButton_Click_1">
+                        <RadioButton.RenderTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </RadioButton.RenderTransform>
+                        <TextBlock Text="Rojo" FontSize="10"></TextBlock>
+                    </RadioButton>
+                    <RadioButton Margin="20 20" Click="RadioButton_Click_2">
+                        <RadioButton.RenderTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </RadioButton.RenderTransform>
+                        <TextBlock Text="Ámbar" FontSize="10"/>
+                    </RadioButton>
+                    <RadioButton Margin="20 20" Click="RadioButton_Click_3">
+                        <RadioButton.RenderTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </RadioButton.RenderTransform>
+                        <TextBlock Text="Verde" FontSize="10"></TextBlock>
+                    </RadioButton>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <Image Source="/images/semaforo.jpg" Width="160"/>
+                    <Ellipse Name="light_red" Width="18" Height="18" Fill="Red" RenderTransformOrigin="0.523,-1.341" Margin="187,45,187,93" Visibility="Hidden"></Ellipse>
+                    <Ellipse Name="light_ambar" Width="18" Height="18" Fill="orange" RenderTransformOrigin="0.523,-1.341" Margin="187,77,187,61" Visibility="Hidden"></Ellipse>
+                    <Ellipse Name="light_green" Width="18" Height="18" Fill="Green" RenderTransformOrigin="0.523,-1.341" Margin="187,109,187,29" Visibility="Hidden"></Ellipse>
+
+                </Grid>
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+    
+    
+</Window>
